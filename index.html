@@ -243,17 +243,18 @@
 
   </div>
 
-  <div class="buttons">
-    <button class="fancy-btn" onclick="showTranslation()">Translation</button>
-    <button class="fancy-btn" onclick="showDiscussion()">Discussion</button>
-  </div>
+<div class="buttons">
+  <button class="fancy-btn" onclick="showTranslation()">Translation</button>
+  <button class="fancy-btn" onclick="showDiscussion()">Discussion</button>
+</div>
 
-  <div id="translationModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('translationModal')">&times;</span>
-      <h2>Translation</h2>
-      <p>
-       Просто идеальный день,<br>
+<!-- Translation Modal -->
+<div id="translationModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('translationModal')">&times;</span>
+    <h2>Translation</h2>
+    <p>
+    Просто идеальный день,<br>
 Пьем сангрию в парке,<br>
 А потом, когда стемнеет,<br>
 Мы идём домой.<br>
@@ -291,86 +292,151 @@
 Ты пожнешь лишь то, что посеял.<br>
 
 
-      </p>
-    </div>
+    </p>
   </div>
+</div>
 
-  <div id="discussionModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('discussionModal')">&times;</span>
-      <h2>Discussion Questions</h2>
-      <ol>
-        <li>What makes a day “perfect” for you?</li>
-        <li>Why do you think Lou Reed chose simple activities to describe happiness?</li>
-        <li>What kind of emotion does this song evoke?</li>
-      </ol>
-    </div>
+<!-- Discussion Modal -->
+<div id="discussionModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('discussionModal')">&times;</span>
+    <h2>Discussion Questions</h2>
+    <ol>
+      <li>Have you ever had a day that felt perfect? What did you do, and why does it stand out in your memory?</li>
+      <li>What small, simple things (like in the song) bring you joy during an ordinary day?</li>
+      <li>Do you prefer quiet, peaceful days like the one described in the song, or more active, adventurous ones? Why?</li>
+    </ol>
   </div>
+</div>
 
-  <script>
-    function checkChoice(el) {
-      const isCorrect = el.getAttribute("data-correct") === "true";
-      const siblings = el.parentElement.querySelectorAll(".choice");
-      const feedback = document.getElementById("feedback");
-      const resetButton = document.getElementById("resetButton");
+<script>
+  function showTranslation() {
+    const modal = document.getElementById("translationModal");
+    modal.style.display = "block";
+    modal.classList.add("open"); // Add the 'open' class to trigger the fade-in animation
+  }
 
-      siblings.forEach(sib => {
-        sib.classList.remove("correct", "incorrect");
-        sib.style.pointerEvents = "none";
-      });
+  function showDiscussion() {
+    const modal = document.getElementById("discussionModal");
+    modal.style.display = "block";
+    modal.classList.add("open"); // Add the 'open' class to trigger the fade-in animation
+  }
 
-      if (isCorrect) {
-        el.classList.add("correct");
-        feedback.textContent = "Correct! Great job!";
-        feedback.style.color = "#88b388";
-      } else {
-        el.classList.add("incorrect");
-        feedback.textContent = "Oops! Try again!";
-        feedback.style.color = "#e8a6b5";
-        siblings.forEach(sib => {
-          if (sib.getAttribute("data-correct") === "true") {
-            sib.classList.add("correct");
-          }
-        });
-      }
-      resetButton.style.display = "block";
+  function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.remove("open");
+    setTimeout(function () {
+      modal.style.display = "none";
+    }, 300);  // Match the fade-out duration
+  }
+
+  window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+      closeModal(event.target.id);
     }
+  }
+</script>
 
-    function resetChoices() {
-      const choices = document.querySelectorAll(".choice");
-      choices.forEach(choice => {
-        choice.classList.remove("correct", "incorrect");
-        choice.style.pointerEvents = "auto";
-      });
-      document.getElementById("feedback").textContent = '';
-      document.getElementById("resetButton").style.display = "none";
-    }
+<style>
+  /* Background overlay for modals */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker background */
+    padding-top: 60px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
 
-    function showTranslation() {
-      const modal = document.getElementById("translationModal");
-      modal.style.display = "block";
-      modal.classList.add("open");
-    }
+  /* Modal content */
+  .modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 70%;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: all 0.3s ease-in-out;
+  }
 
-    function showDiscussion() {
-      const modal = document.getElementById("discussionModal");
-      modal.style.display = "block";
-      modal.classList.add("open");
-    }
+  /* Close button styling */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
 
-    function closeModal(id) {
-      const modal = document.getElementById(id);
-      modal.classList.remove("open");
-      setTimeout(() => {
-        modal.style.display = "none";
-      }, 300);
-    }
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+  }
 
-    window.onclick = function(event) {
-      if (event.target.classList.contains('modal')) {
-        closeModal(event.target.id);
-      }
-    }
-  </script>
+  /* Fade-in animation for modals */
+  .modal.open .modal-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .modal.open {
+    opacity: 1;
+  }
+
+  /* Fancy buttons for modals */
+  .fancy-btn {
+    background-color: #6c5ce7;
+    color: white;
+    font-size: 16px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .fancy-btn:hover {
+    background-color: #a29bfe;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .fancy-btn:active {
+    transform: scale(0.98);
+  }
+
+  /* Modal title */
+  .modal-content h2 {
+    color: #6c5ce7;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  /* Modal text */
+  .modal-content p,
+  .modal-content ol {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .modal-content ol {
+    margin-top: 20px;
+  }
+</style>
+
+
+     
+   
 </body>
 </html>
