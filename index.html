@@ -12,14 +12,8 @@
       margin: 0;
       padding: 20px;
     }
-    h1 {
+    h1, h2 {
       text-align: center;
-      font-size: 2.5em;
-      margin-bottom: 0;
-    }
-    h2 {
-      text-align: center;
-      margin-top: 5px;
     }
     h2 a {
       color: #7ec8e3;
@@ -34,6 +28,13 @@
       max-width: 900px;
       margin: 40px auto;
       text-align: center;
+      position: relative;
+    }
+    .heart-img {
+      position: absolute;
+      left: -200px;
+      top: 0;
+      width: 180px;
     }
     .line {
       margin-bottom: 24px;
@@ -43,8 +44,8 @@
       display: inline-flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin-left: 10px;
       justify-content: center;
+      margin-left: 10px;
     }
     .choice {
       background-color: #2f2f3d;
@@ -83,7 +84,6 @@
     }
     .fancy-btn:hover {
       background-color: #a29bfe;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
     .modal {
       display: none;
@@ -129,8 +129,6 @@
     }
     .modal-content h2 {
       color: #6c5ce7;
-      font-size: 24px;
-      margin-bottom: 20px;
     }
     .modal-content p,
     .modal-content ol {
@@ -141,6 +139,7 @@
   </style>
 </head>
 <body>
+
   <h1>Just a Perfect Day</h1>
   <h2><a href="https://t.me/joinandgetinspired" target="_blank">Join&GetInspired</a></h2>
 
@@ -150,12 +149,9 @@
   </audio>
 
   <div class="lyrics-container">
-    <div style="text-align: center; margin: 30px 0;">
-  <img src="your-image.jpg" alt="Song Illustration" style="max-width: 300px; width: 100%; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-</div>
+    <img class="heart-img" src="heart.png" alt="Couple in the park" />
 
     <div class="line">Just a perfect day</div>
-
     <div class="line">Drink 
       <span class="options">
         <span class="choice" data-correct="true" onclick="checkChoice(this)">sangria</span>
@@ -163,7 +159,6 @@
         <span class="choice" data-correct="false" onclick="checkChoice(this)">cola</span>
       </span> in the park
     </div>
-
     <div class="line">And then later, when it gets 
       <span class="options">
         <span class="choice" data-correct="true" onclick="checkChoice(this)">dark</span>
@@ -171,9 +166,7 @@
         <span class="choice" data-correct="false" onclick="checkChoice(this)">late</span>
       </span>, we’ll go home
     </div>
-
     <div class="line">Just a perfect day</div>
-
     <div class="line">Feed 
       <span class="options">
         <span class="choice" data-correct="true" onclick="checkChoice(this)">animals</span>
@@ -181,11 +174,8 @@
         <span class="choice" data-correct="false" onclick="checkChoice(this)">cars</span>
       </span> in the zoo
     </div>
-
     <div class="line">Then later a movie too, and then home</div>
-
     <div class="line">Oh it’s such a perfect day</div>
-
     <div class="line">I’m 
       <span class="options">
         <span class="choice" data-correct="true" onclick="checkChoice(this)">glad</span>
@@ -193,12 +183,10 @@
         <span class="choice" data-correct="false" onclick="checkChoice(this)">mad</span>
       </span> I spent it with you
     </div>
-
     <div class="line">Oh such a perfect day</div>
     <div class="line">You just keep me hanging on</div>
     <div class="line">You just keep me hanging on</div>
     <div class="line">Just a perfect day</div>
-
     <div class="line">Problems all 
       <span class="options">
         <span class="choice" data-correct="true" onclick="checkChoice(this)">left</span>
@@ -206,11 +194,9 @@
         <span class="choice" data-correct="false" onclick="checkChoice(this)">shared</span>
       </span> alone
     </div>
-
     <div class="line">Weekenders on our own</div>
     <div class="line">It’s such fun</div>
     <div class="line">Just a perfect day</div>
-
     <div class="line">You make me 
       <span class="options">
         <span class="choice" data-correct="true" onclick="checkChoice(this)">forget</span>
@@ -218,11 +204,9 @@
         <span class="choice" data-correct="false" onclick="checkChoice(this)">doubt</span>
       </span> myself
     </div>
-
     <div class="line">I thought I was someone else</div>
     <div class="line">Someone good</div>
     <div class="line">Oh it’s such a perfect day</div>
-
     <div class="line">I’m 
       <span class="options">
         <span class="choice" data-correct="true" onclick="checkChoice(this)">glad</span>
@@ -230,11 +214,9 @@
         <span class="choice" data-correct="false" onclick="checkChoice(this)">mad</span>
       </span> I spent it with you
     </div>
-
     <div class="line">Oh such a perfect day</div>
     <div class="line">You just keep me hanging on</div>
     <div class="line">You just keep me hanging on</div>
-
     <div class="line">You’re going to 
       <span class="options">
         <span class="choice" data-correct="true" onclick="checkChoice(this)">reap</span>
@@ -242,7 +224,6 @@
         <span class="choice" data-correct="false" onclick="checkChoice(this)">chase</span>
       </span> just what you sow
     </div>
-
     <div class="line">You’re going to reap just what you sow</div>
     <div class="line">You’re going to reap just what you sow</div>
     <div class="line">You’re going to reap just what you sow</div>
@@ -260,21 +241,41 @@
       <h2>Translation</h2>
       <p>
         Просто идеальный день,<br>
-        Пьем сангрию в парке,<br>
-        А потом, когда стемнеет,<br>
-        Мы идём домой.<br><br>
+Пьем сангрию в парке,<br>
+А потом, когда стемнеет,<br>
+Мы идём домой.<br>
 
-        Кормим зверей в зоопарке,<br>
-        Потом кино и домой.<br>
-        Я счастлив, что провёл его с тобой.<br><br>
+Просто идеальный день —<br>
+Кормим зверей в зоопарке,<br>
+Потом кино посмотрим,<br>
+А потом домой.<br>
 
-        Проблемы оставлены в стороне,<br>
-        Это весело и тихо.<br>
-        Ты заставляешь забыть себя.<br>
-        Я думал, я кто-то другой.<br><br>
+О, какой же это идеальный день —<br>
+Я счастлив, что провёл его с тобой.<br>
+Такой идеальный день —<br>
+Ты словно держишь меня на плаву,<br>
+Ты не даешь мне упасть.<br>
 
-        Ты пожнешь лишь то, что посеял.<br>
-        (×4)
+Просто идеальный день —<br>
+Проблемы оставлены в стороне,<br>
+Выходной только для нас.<br>
+Это так весело.<br>
+
+Просто идеальный день —<br>
+Ты заставила меня забыть себя,<br>
+Я думал, я — кто-то другой,<br>
+Кто-то хороший.<br>
+
+О, какой идеальный день —<br>
+Счастлив, что провёл его с тобой.<br>
+Такой идеальный день —<br>
+Ты держишь меня на плаву,<br>
+Ты не даешь мне утонуть.<br>
+
+Ты пожнешь лишь то, что посеял.<br>
+Ты пожнешь лишь то, что посеял.<br>
+Ты пожнешь лишь то, что посеял.<br>
+Ты пожнешь лишь то, что посеял.<br>
       </p>
     </div>
   </div>
@@ -329,5 +330,6 @@
       }
     }
   </script>
+
 </body>
 </html>
